@@ -1,0 +1,129 @@
+extends layout
+
+block content
+  .pure-g-r.container
+    #lede.pure-u-1
+      h1.title.text-center
+        a(href="/")= title
+      .text-center
+        p.leader Wake up to all the data in your images.
+          br
+          br
+          small.thin.muted The best little image analysis API out there.  
+        span.uppers
+          a(data-scroll-to="demo").scroller.pad-s-1 Demo
+          a(data-scroll-to="docs").scroller.pad-s-1 Docs
+          a(data-scroll-to="features").scroller.pad-s-1 Features
+        p.muted.quote
+          span.pure-hidden-phone #{quote} 
+          br
+          | made with love by <a href="http://andjosh.com" target="_blank">jbckmn</a>
+    #demo.pure-u-1
+      .pad-s-1
+        br
+        h2.text-center.uppers <a data-scroll-to="lede" class="scroller">AISLIN</a> Demo
+        label 
+          span.muted Input the url of an image <em>(default provided below)</em>
+          input#demo-input(type="url", value="http://#{req.host}/images/cat.jpg")
+        button#demo-button Analyze (ID & Colors)
+        .pure-g-r
+          .pure-u-1-4.pure-hidden-phone
+            p Try:
+              br
+              button(data-demo-url="http://#{req.host}/images/cat.jpg").demo-url Cat
+              br
+              button(data-demo-url="http://#{req.host}/images/fang.jpg").demo-url Fang
+          .pure-u-1-2
+            #demo-resp.text-center
+            #demo-colors.text-center
+            img#demo-image(src="http://#{req.host}/images/favicon.png")
+    #features.pure-u-1
+      .pad-s-1
+        br
+        h2.text-center.uppers Features
+        .pure-g-r
+          .pure-u-1-2
+            p.leader 
+              small.muted All available data returned direct to you: GPS, camera, editor, date, orientation, print size, EXIF, statistics, etc.
+          .pure-u-1-2
+            p.leader 
+              small.muted Colors are returned with individual names (e.g. "#009DC4" => "Pacific Blue"), hex, and rgb data.
+          .pure-u-1-2
+            p.leader
+              small.muted Response data is reasonably cached to optimize performance and response time.
+          .pure-u-1-2
+            p.leader
+              small.muted JSONP supported, and all you need to pass is the URL to a publicly available image URL.
+        br
+        br
+        br
+        br
+        br
+        br
+    #docs.pure-u-1
+      br
+      .pure-hidden-desktop.pure-hidden-tablet.pad-s-1
+        h2.text-center <a data-scroll-to="lede" class="scroller">AISLIN</a> API ROUTES
+        p
+          a(href="/id?i=http://#{req.host}/images/cat.jpg") /id?i=http://#{req.host}/images/cat.jpg
+        p
+          a(href="/cc?i=http://#{req.host}/images/cat.jpg") /cc?i=http://#{req.host}/images/cat.jpg
+        p
+          a(href="/id?i=http://#{req.host}/images/cat.jpg&colorCount=10") /id?i=http://#{req.host}/images/cat.jpg&colorCount=10
+      table.pure-table.pure-table-horizontal.pure-hidden-phone
+        caption <a data-scroll-to="lede" class="scroller">AISLIN</a> API ROUTES
+        thead
+          tr
+            th Method
+            th Route
+            th Query Variables
+            th Response
+            th Working Example
+        tr#id
+          td 
+            code(style="color:forestgreen;") get 
+          td 
+            code /id
+          td 
+            h3 <code>i</code> 
+            ul.no-dot-list
+              li <strong class="muted">Desc:</strong> Image url
+              li <strong class="muted">Type:</strong> STRING
+              li <strong class="emph">Required</strong>
+            span Supports JSONP with <code>callback</code> parameter
+          td JSON Object, with top-level keys of:
+            ul.no-dot-list 
+              li <code>identity</code> <small class="muted emph">(object)</small>
+              li <code>query</code> <small class="muted emph">(object)</small>
+          td
+            ul.no-dot-list
+              li
+                a(href="/id?i=http://#{req.host}/images/cat.jpg") /id?i=http://#{req.host}/images/cat.jpg
+        tr#id
+          td 
+            code(style="color:forestgreen;") get 
+          td 
+            code /cc
+          td 
+            h3 <code>i</code> 
+            ul.no-dot-list
+              li <strong class="muted">Desc:</strong> Image url
+              li <strong class="muted">Type:</strong> String
+              li <strong class="emph">Required</strong>
+            h3 <code>colorCount</code> 
+            ul.no-dot-list
+              li <strong class="muted">Desc:</strong> Count of color data to return
+              li <strong class="muted">Type:</strong> Integer || 'false'
+              li <strong class="muted">Default:</strong> 6
+              li <strong class="emph">Optional</strong>
+            span Supports JSONP with <code>callback</code> parameter
+          td JSON Object, with top-level keys of:
+            ul.no-dot-list 
+              li <code>colors</code> <small class="muted emph">(array)</small>
+              li <code>query</code> <small class="muted emph">(object)</small>
+          td
+            ul.no-dot-list
+              li
+                a(href="/cc?i=http://#{req.host}/images/cat.jpg") /cc?i=http://#{req.host}/images/cat.jpg
+              li
+                a(href="/cc?i=http://#{req.host}/images/cat.jpg&colorCount=10") /cc?i=http://#{req.host}/images/cat.jpg&colorCount=10

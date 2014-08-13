@@ -1,0 +1,21 @@
+{
+  "name": "The Color API",
+  "status": {
+    "500": {
+      "code": 500,
+      "message": "This is embarassing. Something went wrong!"
+    },
+    "404": {
+      "code":404,
+      "message":"Nothing found by that identifier. Life is hard."
+    },
+    "403": {
+      "code": 403,
+      "message": "Not allowed. You can't always get what you want."
+    },
+    "400": {
+      "code":400,
+      "message":"The Color API doesn't understand what you mean. Speak slowly."
+    }
+  }
+}

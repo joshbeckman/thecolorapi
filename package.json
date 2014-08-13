@@ -1,0 +1,31 @@
+{
+  "name": "thecolorapi",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Joshua Beckman <@jbckmn>",
+  "main": "./app.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jbckmn/thecolorapi.git"
+  },
+  "engine": [
+    "node >=0.10.0"
+  ],
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "3.1.1",
+    "grunt": "~0.4.1",
+    "grunt-cli": "*",
+    "jade": "*",
+    "newrelic": "~1.0.0",
+    "redis": "^0.11.0",
+    "request": "~2.16.6"
+  },
+  "devDependencies": {
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-cssmin": "*"
+  }
+}
