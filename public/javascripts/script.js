@@ -13,7 +13,7 @@
   for (; i < length; i++) {
     scrollers[i].onclick = makeScroller(scrollers[i].dataset.scrollTo);
   }
-  function getRandomColor() {
+  function getRandomHex() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
     for (var i = 0; i < 6; i++ ) {
@@ -27,7 +27,7 @@
     var load = document.getElementById('loading'),
     bullets = load.getElementsByClassName('bullet'),
     color;
-    color = getRandomColor();
+    color = getRandomHex();
     if(load.className == 'loading'){
       load.className = 'loading back';
     } else {

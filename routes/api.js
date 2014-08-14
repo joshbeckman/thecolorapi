@@ -26,6 +26,11 @@ module.exports = function (app, ensureAuth) {
     }
   });
 
+  app.get('/random', function(req,res){
+    var err = null;
+    res.redirect('/id?hex=' + getRandomHex().substring(1));
+  });
+
   app.get('/scheme', function(req,res){
     var err = null,
       mode = req.query.mode || 'monochrome',
@@ -78,6 +83,15 @@ module.exports = function (app, ensureAuth) {
       }
       return obj;
     }
+  }
+
+  function getRandomHex() {
+    var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 
 };

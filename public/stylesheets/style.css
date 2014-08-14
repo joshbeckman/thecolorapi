@@ -31,6 +31,23 @@ a{
   text-transform: lowercase;
 }
 
+#lede .links {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  text-transform: lowercase;
+}
+#lede .maker {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  text-transform: lowercase;
+}
+
 .loading {
   position: absolute;
   top: 50%;
