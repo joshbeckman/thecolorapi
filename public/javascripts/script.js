@@ -28,13 +28,17 @@
     bullets = load.getElementsByClassName('bullet'),
     color;
     color = getRandomColor();
-    for (i = bullets.length - 1; i >= 0; i--) {
-      bullets[i].style.background = color;
-    }
     if(load.className == 'loading'){
       load.className = 'loading back';
     } else {
       load.className = 'loading';
+    }
+    load.style.display='none';
+    load.offsetHeight; // no need to store this anywhere, the reference is enough to fool Chrome
+    load.style.display='block';
+    for (i = bullets.length - 1; i >= 0; i--) {
+      bullets[i].style.background = color;
+      bullets[i].style.zIndex = 1;
     }
     setTimeout(loadingBack, 2000);
   }

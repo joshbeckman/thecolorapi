@@ -48,6 +48,8 @@ a{
 }
 .loading.back .bullet {
   border-radius: 50%;
+  -webkit-animation: animIn 1s ease-in-out 0s;
+  animation: animIn 1s ease-in-out 0s;
   animation-direction: reverse;
   -webkit-animation-direction: reverse;
 }
@@ -73,6 +75,7 @@ a{
   top: -10px;
   left: 90px;
   background:white;
+  z-index: 10000;
   -webkit-animation: lift 1s ease-in-out 0s;
   animation: lift 1s ease-in-out 0s;
   -webkit-animation-delay: 0.45s;
@@ -84,6 +87,7 @@ a{
   top: -10px;
   left: 90px;
   background:white;
+  z-index: 10000;
   -webkit-animation: lift 1s ease-in-out 0s;
   animation: lift 1s ease-in-out 0s;
   -webkit-animation-delay: -0.1s;
