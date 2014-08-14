@@ -20,6 +20,7 @@ module.exports = function (app, ensureAuth) {
       err.query = req.query;
       err.params = req.params;
       err.path = req.path;
+      err.example = '/id?hex=FFFFFF';
       res.jsonp(err);
     } else {
       res.jsonp(colored.colorMe.apply(this,[parseQueryColors(req.query)]));

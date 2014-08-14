@@ -8,7 +8,7 @@ body {
   color: #3b3b3b;
 }
 h1, h2, h3, h4, h5{
-  font-weight: 100;
+  font-weight: 400;
 }
 a{
   text-decoration: none;
@@ -21,6 +21,7 @@ a{
   right: 0;
   text-align: center;
   text-transform: uppercase;
+  font-weight: 700;
 }
 #lede .leader{
   position: absolute;
