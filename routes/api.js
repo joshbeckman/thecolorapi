@@ -14,9 +14,12 @@ module.exports = function (app, ensureAuth) {
 
   app.get('/id', function(req,res){
     var err = null;
-    if (!req.query.rgb && !req.query.hex && !req.query.hsl) {
+    if (!req.query.rgb && !req.query.hex && !req.query.hsl && !req.query.cmyk) {
       err = config.status['400'];
-      err.message = 'The Color API doesn\'t understand what you mean. Please supply a query parameter of `rgb`, `hsl` or `hex`.'
+      err.message = 'The Color API doesn\'t understand what you mean. Please supply a query parameter of `rgb`, `hsl`, `cmyk` or `hex`.'
+      err.query = req.query;
+      err.params = req.params;
+      err.path = req.path;
       res.jsonp(err);
     } else {
       res.jsonp(colored.colorMe.apply(this,[parseQueryColors(req.query)]));
