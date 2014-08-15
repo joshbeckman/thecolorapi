@@ -23,6 +23,9 @@ a{
   text-transform: uppercase;
   font-weight: 700;
 }
+#lede .title a{
+  color: #3b3b3b;
+}
 #lede .leader{
   position: absolute;
   top: 41%;
