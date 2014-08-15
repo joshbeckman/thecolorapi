@@ -22,7 +22,9 @@
     return color;
   }
 
-  setTimeout(loadingBack, 2000);
+  if (document.getElementById('loading')){
+    setTimeout(loadingBack, 2000);
+  }
   function loadingBack(){
     var load = document.getElementById('loading'),
     bullets = load.getElementsByClassName('bullet'),
@@ -40,6 +42,7 @@
       bullets[i].style.background = color;
       bullets[i].style.zIndex = 1;
     }
+    document.getElementById('lede').getElementsByClassName('title')[0].children[0].style.textShadow = '1px 2px 5px '+color;
     setTimeout(loadingBack, 2000);
   }
 })(this, this.document);
