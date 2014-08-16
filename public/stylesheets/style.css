@@ -21,9 +21,6 @@ a{
   margin:0 auto;
   text-align: center;
 }
-.margin-center table{
-  display: inline-block;
-}
 
 #lede .title{
   position: absolute;
@@ -82,6 +79,22 @@ a{
   margin:0;
   padding: 1em;
   box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  color: grey;
+}
+
+.form-results{
+  max-width: 600px;
+  margin:50px auto;
+}
+.form-results table{
+  width: 100%;
+  display: table;
+}
+.form-results img{
+  border-radius: 25px;
+}
+table td{
+  word-break: break-word;
 }
 
 .loading {

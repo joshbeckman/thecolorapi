@@ -6,7 +6,10 @@ block content
       .text-center
         img(src="#{color.image.named}", class="pure-img")
         br
+        br
         a(href="/id?hex=#{color.hex.clean}", title="Go To API") View "#{color.name.value}" in the API at <code>/id?hex=#{color.hex.clean}</code>
+        br
+        br
       for tK in topKeys
         if tK != '_links' && tK != '_embedded'
           .margin-center
