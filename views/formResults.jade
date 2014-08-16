@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  .pure-g-r.form-results
+    .pure-u-1
+      .text-center
+        img(src="#{color.image.named}", class="pure-img")
+        br
+        a(href="/id?hex=#{color.hex.clean}", title="Go To API") View "#{color.name.value}" in the API at <code>/id?hex=#{color.hex.clean}</code>
+      for tK in topKeys
+        if tK != '_links' && tK != '_embedded'
+          .margin-center
+            table.pure-table
+              caption #{tK}
+              thead
+                tr
+                  for lK in lowKeys[tK]
+                    th #{lK}
+              tbody
+                tr
+                  for lK in lowKeys[tK]
+                    if typeof(color[tK][lK]) == 'object'
+                      td
+                        - var kk = Object.keys(color[tK][lK]);
+                        for k in kk
+                          | #{k} : #{0.01 * Math.round(100 * color[tK][lK][k])} <br/>
+                    else
+                      td #{color[tK][lK]}

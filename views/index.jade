@@ -4,12 +4,13 @@ block content
   .pure-g-r.container
     #lede.pure-u-1
       h1.title.text-center
-        a(href="/")= title
+        a(href="/", title="The Color API, Opening doors to better color")= title
       .text-center
-        p.leader Opening doors to better color
-        h3.links
-          a(href="#") Read the Docs
-        p.maker <a href="http://andjosh.com" rel="author">Author</a> &mdash; <a href="mailto:jsh@bckmn.com?subject=The Color API">Support</a>
+        form.leader(action="/form", method="POST")
+          input(name="color", type="text", placeholder="#FFFFFF or rgb(0,0,0), etc.", autofocus)
+          button &rArr;
+        p.links
+          span.maker <a href="/docs" title="Documentation">Read The Docs</a> &mdash; <a href="mailto:support@thecolorappi.com?subject=The Color API" title="Email support for the API">Support</a> &mdash; <a href="http://andjosh.com" rel="author" title="Josh Beckman">Author</a>
       #loading.loading.back
         .door
         .bullet

@@ -32,6 +32,28 @@ module.exports = function (app, ensureAuth) {
     res.redirect('/id?hex=' + getRandomHex().substring(1));
   });
 
+  app.post('/form', function(req,res){
+    var err = null,
+      color = colored.colorMe.apply(this,[parseUnknownType(req.body.color)]),
+      topKeys = color ? Object.keys(color) : null,
+      lowKeys = color ? (function(){
+        var obj = {};
+        for (var i = 0; i < topKeys.length; i++) {
+          obj[topKeys[i]] = Object.keys(color[topKeys[i]]);
+        }
+        return obj;
+      })() : null;
+    if (color){
+      res.render('formResults', { title: color.name.value + ' | The Color API',
+                                  color: color,
+                                  topKeys: topKeys,
+                                  lowKeys: lowKeys
+                                });
+    } else{
+      res.render('400', { color: req.body.color });
+    }
+  });
+
   app.get('/scheme', function(req,res){
     var err = null,
       mode = req.query.mode || 'monochrome',
@@ -97,6 +119,21 @@ module.exports = function (app, ensureAuth) {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+  }
+
+  function parseUnknownType(input){
+    var hex = (input.substring(0,1) == '#' || input.length == 3 || input.length == 6) ? input : null,
+      cmyk = input.substring(0,4).toLowerCase() == 'cmyk' ? input : null,
+      hsl = input.substring(0,3).toLowerCase() == 'hsl' ? input : null,
+      hsv = input.substring(0,3).toLowerCase() == 'hsv' ? input : null,
+      rgb = input.substring(0,3).toLowerCase() == 'rgb' ? input : null;
+    return parseQueryColors({
+      hex: hex,
+      cmyk: cmyk,
+      hsl: hsl,
+      rgb: rgb,
+      hsv: hsv
+    });
   }
 
 };

@@ -2,7 +2,7 @@
 body {
   font-size: 15px ;
   line-height: 1.4em;
-  font-family: 'Raleway', Helvetica, sans-serif;
+  font-family: 'Futura', "Century Gothic", Helvetica, sans-serif;
   font-weight: 400;
   background: #ffffff;
   color: #3b3b3b;
@@ -12,6 +12,17 @@ h1, h2, h3, h4, h5{
 }
 a{
   text-decoration: none;
+}
+.text-center{
+  text-align: center;
+}
+.margin-center{
+  display: block;
+  margin:0 auto;
+  text-align: center;
+}
+.margin-center table{
+  display: inline-block;
 }
 
 #lede .title{
@@ -26,39 +37,56 @@ a{
 }
 #lede .title a{
   color: #3b3b3b;
-  color:#ffffff;
+  letter-spacing: 3px;
   transition: text-shadow 2s;-moz-transition: text-shadow 2s;-webkit-transition: text-shadow 2s;-o-transition: text-shadow 2s;
-  text-shadow: 1px 2px 5px #3b3b3b;
 }
 #lede .leader{
   position: absolute;
-  top: 41%;
+  top: 50%;
   left: 0;
   right: 0;
   text-align: center;
   text-transform: lowercase;
+}
+#lede .leader input{
+  padding:3px 0 3px 5px;
+  position: relative;
+  top: 2px;
+  box-shadow: none;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  border:1px solid #bbb;
+  font-family: 'Futura', "Century Gothic", Helvetica, sans-serif;
+}
+#lede .leader input:focus{
+  outline: none;
+}
+#lede .leader button{
+  background:blue;
+  border:none;
+  padding-right:8px;
+  padding-left: 8px;
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+  color: #fff;
 }
 
 #lede .links {
-  position: absolute;
-  bottom: 30px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  text-transform: lowercase;
-}
-#lede .maker {
   position: absolute;
   bottom: 0px;
   left: 0;
   right: 0;
   text-align: center;
   text-transform: lowercase;
+  background:#fefefe;
+  margin:0;
+  padding: 1em;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
 .loading {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
 }
 .loading .bullet {
