@@ -69,7 +69,7 @@ a{
 }
 
 #lede .links {
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   left: 0;
   right: 0;
@@ -84,7 +84,25 @@ a{
 
 .form-results{
   max-width: 600px;
-  margin:50px auto;
+  margin:20px auto 50px;
+}
+.form-results h1{
+  margin-bottom: 40px;
+}
+.form-results h1 a{
+  text-transform: uppercase;
+  color: #3b3b3b;
+}
+.form-results .in-api-link{
+  border:2px solid #3b3b3b;
+  max-width: 250px;
+  display: inline-block;
+  padding:5px 10px;
+  border-radius: 5px;
+  transition: opacity 1s;-moz-transition: opacity 1s;-webkit-transition: opacity 1s;-o-transition: opacity 1s;
+}
+.form-results .in-api-link:hover{
+  opacity: 0.75;
 }
 .form-results table{
   width: 100%;

@@ -4,10 +4,15 @@ block content
   .pure-g-r.form-results
     .pure-u-1
       .text-center
+        h1
+          a(href="/") The Color API
+        a.in-api-link(href="/id?hex=#{color.hex.clean}", title="Go To ID API", style="background:#{color.hex.value};color:#{color.contrast.value};") Identification of "#{color.name.value}" at<br/><code>/id?hex=#{color.hex.clean}</code>
+        br
+        br
+        a.in-api-link(href="/scheme?hex=#{color.hex.clean}", title="Go To Scheme API", style="background:#{color.hex.value};color:#{color.contrast.value};") "#{color.name.value}" schemes at<br/><code>/scheme?hex=#{color.hex.clean}</code>
+        br
+        br
         img(src="#{color.image.named}", class="pure-img")
-        br
-        br
-        a(href="/id?hex=#{color.hex.clean}", title="Go To API") View "#{color.name.value}" in the API at <code>/id?hex=#{color.hex.clean}</code>
         br
         br
       for tK in topKeys
@@ -29,3 +34,6 @@ block content
                           | #{k} : #{0.01 * Math.round(100 * color[tK][lK][k])} <br/>
                     else
                       td #{color[tK][lK]}
+      #lede
+        p.links
+          span.maker <a href="/docs" title="Documentation">Documentation</a> &mdash; <a href="/about", title="About">About</a> &mdash; <a href="mailto:support@thecolorappi.com?subject=The Color API" title="Email support for the API">Support</a> &mdash; <a href="http://andjosh.com" rel="author" title="Josh Beckman">Author</a>
