@@ -5,6 +5,8 @@
 var fs = require('fs')
     , request = require('request')
     , config = JSON.parse(fs.readFileSync('./static/config.json'))
+    , aglio = require('aglio')
+    , blueprint = fs.readFileSync('./static/blueprint.md').toString()
     , colored = require('../lib/colored')
     , schemer = require('../lib/schemer')
     , cutils = require('../lib/cutils')
@@ -16,6 +18,15 @@ module.exports = function (app, ensureAuth) {
     res.render('index', { title: config.name,
                           req: req 
                         });
+  });
+
+  app.get('/docs', function(req, res) {
+    var template = './static/flatly.jade';
+    aglio.render(blueprint, template, function (err, html, warnings) {
+        if (err) return console.log(err);
+        if (warnings) console.log(warnings);
+        res.send(html);
+    });
   });
 
   app.post('/form-id', function(req,res){
