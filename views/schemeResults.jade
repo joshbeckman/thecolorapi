@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .pure-g-r.form-results
+    .pure-u-1
+      .text-center
+        h1
+          a(href="/") The Color API
+        h2 #{scheme.seed.name.value} &mdash; #{scheme.mode}
+        for color in scheme.colors
+          a.scheme-color-link(href="/id?hex=#{color.hex.clean}&format=html", title="#{color.name.value}", style="background:#{color.hex.value};color:#{color.contrast.value};") #{color.name.value}
+        hr
+        for sc in scheme['_links'].schemes
+          a.scheme-to-scheme-link(href="#{sc}&format=html") #{sc.split('mode=')[1].split('&')[0]}
+      #lede
+        p.links
+          span.maker <a href="/docs" title="Documentation">Read The Docs</a> &mdash; <a href="/about", title="About">About</a> &mdash; <a href="mailto:support@thecolorappi.com?subject=The Color API" title="Email support for the API">Support</a> &mdash; <a href="http://andjosh.com" rel="author" title="Josh Beckman">Author</a>

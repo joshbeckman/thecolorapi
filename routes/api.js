@@ -7,6 +7,8 @@ var fs = require('fs')
     , request = require('request')
     , config = JSON.parse(fs.readFileSync('./static/config.json'))
     , colored = require('../lib/colored')
+    , schemer = require('../lib/schemer')
+    , cutils = require('../lib/cutils')
     , newTime
     , response;
 
@@ -22,35 +24,28 @@ module.exports = function (app, ensureAuth) {
       err.path = req.path;
       err.example = '/id?hex=a674D3';
       res.jsonp(err);
+    } else if (req.query.format == 'html') {
+      var err = null,
+        color = colored.colorMe.apply(this,[cutils.parseQueryColors(req.query)]),
+        topKeys = color ? Object.keys(color) : null,
+        lowKeys = color ? (function(){
+          var obj = {};
+          for (var i = 0; i < topKeys.length; i++) {
+            obj[topKeys[i]] = Object.keys(color[topKeys[i]]);
+          }
+          return obj;
+        })() : null;
+      if (color){
+        res.render('formResults', { title: color.name.value + ' | The Color API',
+                                    color: color,
+                                    topKeys: topKeys,
+                                    lowKeys: lowKeys
+                                  });
+      } else {
+        res.render('400', { color: req.query.hex || req.query.rgb || req.query.hsl || req.query.cmyk });
+      }
     } else {
-      res.jsonp(colored.colorMe.apply(this,[parseQueryColors(req.query)]));
-    }
-  });
-
-  app.get('/random', function(req,res){
-    var err = null;
-    res.redirect('/id?hex=' + getRandomHex().substring(1));
-  });
-
-  app.post('/form', function(req,res){
-    var err = null,
-      color = colored.colorMe.apply(this,[parseUnknownType(req.body.color)]),
-      topKeys = color ? Object.keys(color) : null,
-      lowKeys = color ? (function(){
-        var obj = {};
-        for (var i = 0; i < topKeys.length; i++) {
-          obj[topKeys[i]] = Object.keys(color[topKeys[i]]);
-        }
-        return obj;
-      })() : null;
-    if (color){
-      res.render('formResults', { title: color.name.value + ' | The Color API',
-                                  color: color,
-                                  topKeys: topKeys,
-                                  lowKeys: lowKeys
-                                });
-    } else{
-      res.render('400', { color: req.body.color });
+      res.jsonp(colored.colorMe.apply(this,[cutils.parseQueryColors(req.query)]));
     }
   });
 
@@ -68,72 +63,20 @@ module.exports = function (app, ensureAuth) {
       err.path = req.path;
       err.example = '/scheme?hex=FF0&mode=monochrome&count=5';
       res.jsonp(err);
+    } else if (req.query.format == 'html') {
+      color = colored.colorMe.apply(this,[cutils.parseQueryColors(req.query)]);
+      var scheme = schemer.getScheme(mode, count, color);
+      res.render('schemeResults', { title: color.name.value + ', ' + mode + ' | The Color API',
+                                    scheme: scheme
+                                  });
     } else {
-      color = colored.colorMe.apply(this,[parseQueryColors(req.query)]);
-      for (var i = count - 1; i >= 0; i--) {
-        colors.push(color);
-      }
-      res.jsonp(colored.schemer.scheme.generate(mode, colors, color));
+      color = colored.colorMe.apply(this,[cutils.parseQueryColors(req.query)]);
+      res.jsonp(schemer.getScheme(mode, count, color));
     }
-  })
+  });
 
-  function parseQueryColors(q){
-    var hsl = {h:null,s:null,l:null},
-      rgb = {r:null,g:null,b:null},
-      cmyk = {c:null,m:null,y:null,k:null},
-      hsv = {h:null,s:null,v:null},
-      hex = q.hex ? q.hex : null;
-    return {
-      hsl:  maybeSplitParen(q.hsl, hsl),
-      rgb:  maybeSplitParen(q.rgb, rgb),
-      cmyk: maybeSplitParen(q.cmyk, cmyk),
-      hsv:  maybeSplitParen(q.hsv, hsv),
-      hex:  hex
-    };
-    function maybeSplitParen(str, obj){
-      if(str){
-        var s = str.split('('),
-          k = Object.keys(obj);
-        if(s.length > 1){
-          s = s[1].split(')')[0].split(',');
-        } else {
-          s = s[0].split(',');
-        }
-        for (var i = 0; i < s.length; i++) {
-          if(s[i].split('.').length > 1){
-            obj[k[i]] = parseFloat(s[i]);
-            obj.is_fraction = true;
-          } else{
-            obj[k[i]] = parseInt(s[i], 10);
-          }
-        }
-      }
-      return obj;
-    }
-  }
-
-  function getRandomHex() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
-
-  function parseUnknownType(input){
-    var hex = (input.substring(0,1) == '#' || input.length == 3 || input.length == 6) ? input : null,
-      cmyk = input.substring(0,4).toLowerCase() == 'cmyk' ? input : null,
-      hsl = input.substring(0,3).toLowerCase() == 'hsl' ? input : null,
-      hsv = input.substring(0,3).toLowerCase() == 'hsv' ? input : null,
-      rgb = input.substring(0,3).toLowerCase() == 'rgb' ? input : null;
-    return parseQueryColors({
-      hex: hex,
-      cmyk: cmyk,
-      hsl: hsl,
-      rgb: rgb,
-      hsv: hsv
-    });
-  }
-
+  app.get('/random', function(req,res){
+    var err = null;
+    res.redirect('/id?hex=' + cutils.getRandomHex().substring(1));
+  });
 };

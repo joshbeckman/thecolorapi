@@ -84,7 +84,7 @@ a{
 
 .form-results{
   max-width: 600px;
-  margin:20px auto 50px;
+  margin:20px auto 100px;
 }
 .form-results h1{
   margin-bottom: 40px;
@@ -113,6 +113,15 @@ a{
 }
 table td{
   word-break: break-word;
+}
+
+.form-results .scheme-color-link{
+  display: block;
+  padding: 2em 1em;
+}
+.form-results .scheme-to-scheme-link{
+  display: block;
+  padding: 1em 1em;
 }
 
 .loading {
