@@ -55,7 +55,7 @@ module.exports = function (app, ensureAuth) {
       count = req.query.count || 5,
       color, 
       colors = [];
-    if (!req.query.rgb && !req.query.hex && !req.query.hsl && !req.query.cmyk) {
+    if (!req.query.rgb && !req.query.hex && !req.query.hsl && !req.query.cmyk && count < 20 && count > 0) {
       err = config.status['400'];
       err.message = 'The Color API doesn\'t understand what you mean. Please supply a query parameter of `rgb`, `hsl`, `cmyk` or `hex`.'
       err.query = req.query;

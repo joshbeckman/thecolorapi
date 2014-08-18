@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  .pure-g-r.container
+    #about.pure-u-1
+      h1.title.text-center
+        a(href="/", title="The Color API, Opening doors to better color")= title
+      hr
+      p The Color API was created by <a href="http://www.andjosh.com" target="_blank" title="Josh Beckman" rel="author">Josh</a> to allow programmatic access to color transposition and color cheme generation.
+      p You can consume the API at either
+        ul
+          li The JSON(P) endpoints (<a href="/docs" title="API Documentation">Read the docs here</a>), or
+          li The HTML interface, accessible either through the <a href="/" title="Form access to the API">homepage</a> or by specifying <code>`&format=html`</code> on any API request.
+      p Try <a href="/id?hex=24B1E0" title="Cerulean example">Josh's favorite</a>, for example (<a href="/id?hex=24B1E0&format=html" title="Cerulean example">HTML version</a>).
+      p.text-center &mdash; &mdash; &mdash;
+      h3#cool
+        a(href="#cool") Is it any good?
+      p Every <code>color</code> object returned by the API 
+        ul
+          li Is named (from a matched dataset of over 2000 names+colors)
+            br
+            em e.g. #24B1E0 == Cerulean
+          li Has an image URL for demonstration
+            br
+            em e.g. <a href="http://placehold.it/300x300.png/24B1E0/000000&text=Cerulean">#24B1E0 image</a>
+          li Is transposed into hex, rgb, cmyk, hsl, hsv and XYZ
+          li Is matched to a best-contrst color for text overlay, etc.
+      p Every <code>scheme</code> object returned by the API is seeded by the color of your request and can be any length you specify (within limits). Scheme options include `monochrome`, `monochrome-dark`, `monochrome-light`, `analogic`, `complement`, `analogic-complement`, `triad` and `quad`.
+      p.text-center &mdash; &mdash; &mdash;
+      p The API is open to all, no keys required.
+
+      #loading.loading.back
+        .door
+        .bullet
+        .bullet
+        .bullet
+        .bullet
+        .door
+  #lede
+    p.links
+      span.maker <a href="/docs" title="Documentation">Read The Docs</a> &mdash; <a href="/about", title="About">About</a> &mdash; <a href="mailto:support@thecolorappi.com?subject=The Color API" title="Email support for the API">Support</a> &mdash; <a href="http://andjosh.com" rel="author" title="Josh Beckman">Author</a>

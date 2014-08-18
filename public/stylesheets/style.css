@@ -22,6 +22,16 @@ a{
   text-align: center;
 }
 
+#about{
+  max-width: 500px;
+  margin: 75px auto 100px;
+  display: block;
+}
+#about .title{
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 35px;
+}
 #lede .title{
   position: absolute;
   top: 33%;
@@ -39,7 +49,7 @@ a{
 }
 #lede .leader{
   position: absolute;
-  top: 50%;
+  top: 47%;
   left: 0;
   right: 0;
   text-align: center;
@@ -50,10 +60,11 @@ a{
   position: relative;
   top: 2px;
   box-shadow: none;
-  border-bottom-left-radius: 3px;
-  border-top-left-radius: 3px;
+  border-radius: 3px;
   border:1px solid #bbb;
   font-family: 'Futura', "Century Gothic", Helvetica, sans-serif;
+  display: block;
+  margin: 0 auto 10px;
 }
 #lede .leader input:focus{
   outline: none;
@@ -63,9 +74,10 @@ a{
   border:none;
   padding-right:8px;
   padding-left: 8px;
-  border-bottom-right-radius: 3px;
-  border-top-right-radius: 3px;
+  border-radius: 3px;
   color: #fff;
+  display: block;
+  margin: 10px auto 0px;
 }
 
 #lede .links {
@@ -127,6 +139,11 @@ table td{
 .loading {
   position: absolute;
   top: 60%;
+  left: 50%;
+}
+#about .loading {
+  position: absolute;
+  top: 0px;
   left: 50%;
 }
 .loading .bullet {

@@ -2,7 +2,11 @@ FORMAT: 1A
 HOST: http://thecolorapi.com
 
 # The Color API Docs
-> Opening doors to better color. <br/>Created by [Josh Beckman](http://www.andjosh.com) to bring a little more color into this world.
+- [About](http://thecolorapi.com/about) The Color API
+- Support is only an email away: [support@thecolorapi.com](mailto:support@thecolorapi.com?subject=The Color API)
+- Created by [Josh Beckman](http://www.andjosh.com) to bring a little more color into this world.
+
+---
 
 __Note:__ All endpoints support JSONP with the `callback` query parameter.
 
@@ -116,6 +120,11 @@ Return available identifying information on the given color.
 
 ### Get Color [GET]
 Get information for a single color.
+
+e.g.
+```
+/id?hex=24B1E0 || /id?rgb=rgb(0,71,171) || ...
+```
 
 + Response 200
 
@@ -445,6 +454,11 @@ Return a generated scheme for the provided seed color and optional mode.
 
 ### Get Scheme [GET]
 Get a color scheme for a given seed color.
+
+e.g.
+```
+/scheme?hex=24B1E0&mode=triad&count=6 || /scheme?rgb=rgb(0,71,171) || ...
+```
 
 + Response 200
 

@@ -8,7 +8,8 @@ block content
           a(href="/") The Color API
         h2 #{scheme.seed.name.value} &mdash; #{scheme.mode}
         for color in scheme.colors
-          a.scheme-color-link(href="/id?hex=#{color.hex.clean}&format=html", title="#{color.name.value}", style="background:#{color.hex.value};color:#{color.contrast.value};") #{color.name.value}
+          if color
+            a.scheme-color-link(href="/id?hex=#{color.hex.clean}&format=html", title="#{color.name.value}", style="background:#{color.hex.value};color:#{color.contrast.value};") #{color.name.value}
         hr
         for sc in scheme['_links'].schemes
           a.scheme-to-scheme-link(href="#{sc}&format=html") #{sc.split('mode=')[1].split('&')[0]}

@@ -20,6 +20,12 @@ module.exports = function (app, ensureAuth) {
                         });
   });
 
+  app.get('/about', function(req, res) {
+    res.render('about', { title: config.name,
+                          req: req 
+                        });
+  });
+
   app.get('/docs', function(req, res) {
     var template = './static/flatly.jade';
     aglio.render(blueprint, template, function (err, html, warnings) {
