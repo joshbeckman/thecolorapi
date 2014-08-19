@@ -15,7 +15,7 @@ var fs = require('fs')
 module.exports = function (app, ensureAuth) {
 
   app.get('/colorbox', function(req, res) {
-    var color = colored.colorMe.apply(this,[cutils.parseUnknownType(req.query.c)]);
+    var color = colored.colorMe.apply(this,[cutils.parseQueryColors(req.query)]);
     res.render('colorSVG', { color: color.hex.value,
                               width: req.query.w || 100,
                               height: req.query.h || 100,
@@ -26,7 +26,7 @@ module.exports = function (app, ensureAuth) {
   });
 
   app.get('/schemebox', function(req, res) {
-    var color = colored.colorMe.apply(this,[cutils.parseUnknownType(req.query.c)]);
+    var color = colored.colorMe.apply(this,[cutils.parseQueryColors(req.query)]);
     var scheme = schemer.getScheme((req.query.mode || 'monochrome'), (req.query.count || 5), color);
     res.render('schemeSVG', { scheme: scheme,
                               width: req.query.w || 100,
