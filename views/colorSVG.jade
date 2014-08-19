@@ -1,0 +1,4 @@
+svg(xmlns='http://www.w3.org/2000/svg', width='#{width}', height='#{height}')
+  rect(fill='#{color}', x="0", y="0", width="#{width}", height="#{height}")
+  g(fill='#{contrast}', text-anchor='middle', font-family='', font-size='12')
+    text(x='#{Math.round(width/2)}', y='#{Math.round(height/2)}') #{named ? '' : text}

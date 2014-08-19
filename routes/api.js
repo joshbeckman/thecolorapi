@@ -14,6 +14,29 @@ var fs = require('fs')
 
 module.exports = function (app, ensureAuth) {
 
+  app.get('/colorbox', function(req, res) {
+    var color = colored.colorMe.apply(this,[cutils.parseUnknownType(req.query.c)]);
+    res.render('colorSVG', { color: color.hex.value,
+                              width: req.query.w || 100,
+                              height: req.query.h || 100,
+                              text: color.name.value,
+                              contrast: color.contrast.value,
+                              named: req.query.named
+                            });
+  });
+
+  app.get('/schemebox', function(req, res) {
+    var color = colored.colorMe.apply(this,[cutils.parseUnknownType(req.query.c)]);
+    var scheme = schemer.getScheme((req.query.mode || 'monochrome'), (req.query.count || 5), color);
+    res.render('schemeSVG', { scheme: scheme,
+                              width: req.query.w || 100,
+                              height: req.query.h || 200,
+                              iter: 0,
+                              section: Math.round((req.query.h || 200)/scheme.colors.length),
+                              named: req.query.named
+                            });
+  });
+
   app.get('/id', function(req,res){
     var err = null;
     if (!req.query.rgb && !req.query.hex && !req.query.hsl && !req.query.cmyk) {
