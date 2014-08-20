@@ -9,6 +9,9 @@ var fs = require('fs')
     , colored = require('../lib/colored')
     , schemer = require('../lib/schemer')
     , cutils = require('../lib/cutils')
+    , gadget = require('../lib/gadget')
+    , ua = 'UA-37125372-13'
+    , ga = new gadget(ua, 'www.thecolorapi.com')
     , newTime
     , response;
 

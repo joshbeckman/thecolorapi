@@ -78,6 +78,8 @@ a{
   color: #fff;
   display: block;
   margin: 10px auto 0px;
+  font-family: 'Futura', "Century Gothic", Helvetica, sans-serif;
+  text-transform: uppercase;
 }
 
 #lede .links {

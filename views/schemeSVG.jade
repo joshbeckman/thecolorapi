@@ -2,6 +2,6 @@ svg(xmlns='http://www.w3.org/2000/svg', width='#{width}', height='#{height}')
   for color in scheme.colors
     if color
       rect(fill='#{color.hex.value}', x="0", y="#{section * iter}", width="#{width}", height="#{section}")
-      g(fill='#{color.contrast.value}', text-anchor='middle', font-family='', font-size='12')
+      g(fill='#{color.contrast.value}', text-anchor='middle', font-family='Futura, Century Gothic, Helvetica, sans-serif', font-size='12', style="text-transform:lowercase;")
         text(x='#{Math.round(width/2)}', y='#{Math.round((section * iter) + (section/2))}') #{named ? '' : color.name.value}
-    -  iter++;
+      -  iter++;

@@ -35,6 +35,13 @@ module.exports = function (app, ensureAuth) {
     });
   });
 
+  app.get('/form-id', function(req, res) {
+    res.render('formId',  { 
+                            title: config.name,
+                            req: req 
+                          });
+  });
+
   app.post('/form-id', function(req,res){
     var err = null,
       color = colored.colorMe.apply(this,[cutils.parseUnknownType(req.body.color)]),
