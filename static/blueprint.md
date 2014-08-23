@@ -26,6 +26,7 @@ Return available identifying information on the given color.
         + Values
             + `json`
             + `html`
+            + `svg`
 
 + Model
 
@@ -164,6 +165,7 @@ Return a generated scheme for the provided seed color and optional mode.
         + Values
             + `json`
             + `html`
+            + `svg`
     + mode = `monochrome` (optional, string, `analogic`) ... Define mode by which to generate the scheme from the seed color
 
         + Values

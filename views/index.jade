@@ -1,16 +1,15 @@
 extends layout
 
 block content
+  #sunset
   .pure-g-r.container
     #lede.pure-u-1
       h1.title.text-center
-        a(href="/", title="The Color API, Opening doors to better color")= title
-      .text-center
-        form.leader(action="/form-id", method="POST")
-          input(name="color", type="text", placeholder="#0074AB, rgb(2,45,5), etc.", autofocus, required, value="#{req.query.color || ''}")
-          button ID This Color
-        p.links
-          span.maker <a href="/docs" title="Documentation">Read The Docs</a> &mdash; <a href="/about", title="About">About</a> &mdash; <a href="mailto:support@thecolorapi.com?subject=The Color API" title="Email support for the API">Support</a> &mdash; <a href="http://twitter.com/jbckmn" rel="author" title="Follow @jbckmn for updates">Updates</a>
+        a(href="/", title="The Color API, Opening doors to better color") The<span>Color</span>API
+          small color conversion, naming, scheming & placeholders
+        //- a(href="/", title="The Color API, Opening doors to better color") The 
+        //-   img(src="/images/circ.svg", style="width:40px;position: relative;top:6px;margin-right:-5px;z-index: -1;")
+        //-   | olor API
       #loading.loading.back
         .door
         .bullet
@@ -18,3 +17,16 @@ block content
         .bullet
         .bullet
         .door
+      .content-div
+        div
+          button#try-it Try Me
+          img#try-show
+          hr
+          h3 Your fast, modern, swiss army knife for color. 
+          p Pass in any valid color and get conversion into any other format, the name of the color, placeholder images and a multitude of schemes.
+          p There are only two endpoints you need to worry about, <code>/id</code> and <code>/scheme</code>, and you can <a href="/docs" title="Documentation">read the docs</a> about both. Each endpoint is available in JSON[P], HTML & SVG format. The SVG format can be saved or used as an <code>img[src]</code> attribute for super-easy embedding/sharing! 
+          .text-center –––
+          h3 How do I convert/identify an image?
+          h3 How do I generate color schemes?
+      p.links
+        span.maker <a href="/docs" title="Documentation">Read The Docs</a> &mdash; <a href="/form-id", title="ID a color">ID color</a> &mdash; <a href="/form-scheme", title="Scheme a color">Generate scheme</a> &mdash; <a href="mailto:support@thecolorapi.com?subject=The Color API" title="Email support for the API">contact</a> &mdash; <a href="http://andjosh.com" rel="author" title="Josh Beckman">Author</a>

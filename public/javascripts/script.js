@@ -42,8 +42,21 @@
       bullets[i].style.background = color;
       bullets[i].style.zIndex = 1;
     }
+    document.getElementById('sunset').style.background = color;
+    document.getElementById('try-it').style.color = document.getElementById('try-it').style.borderColor = color;
+    document.getElementsByClassName('title')[0].getElementsByTagName('span')[0].style.color = color;
     setTimeout(loadingBack, 2000);
   }
+  document.getElementById('try-it').addEventListener('click', function(evt){
+    evt.preventDefault;
+    var color = getRandomHex();
+    document.getElementById('try-show').src = '/id?format=svg&hex=' + color.substring(1);
+    evt.target.className = document.getElementById('try-show').className = 'active';
+  }, false);
+  document.getElementById('try-show').addEventListener('click', function(evt){
+    var s = evt.target.src.split('format=svg');
+    window.location = s[0] + 'format=html' + s[1];
+  }, false);
 })(this, this.document);
 
 // Custom ScrollTo

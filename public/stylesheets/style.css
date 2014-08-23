@@ -34,7 +34,7 @@ a{
 }
 #lede .title{
   position: absolute;
-  top: 33%;
+  top: 50px;
   left: 0;
   right: 0;
   text-align: center;
@@ -42,10 +42,32 @@ a{
   font-weight: 700;
   font-size: 35px;
 }
-#lede .title a{
+#lede .title a, #lede .title a span{
   color: #3b3b3b;
-  letter-spacing: 3px;
-  transition: text-shadow 2s;-moz-transition: text-shadow 2s;-webkit-transition: text-shadow 2s;-o-transition: text-shadow 2s;
+  letter-spacing: 12px;
+  transition: color 1s;-moz-transition: color 1s;-webkit-transition: color 1s;-o-transition: color 1s;
+}
+#lede .title a span{
+  color: #24B1E0;
+}
+#lede .title a small{
+  opacity: 0.4;
+  font-size: 15px;
+  letter-spacing: 0px;
+  display: block;
+  text-transform: lowercase;
+  font-weight: 400;
+  padding:15px 0 0;
+}
+#sunset{
+  position: fixed;
+  z-index: -100;
+  top: 0;
+  right: 0;
+  height: 2px;
+  left: 0;
+  background: #24B1E0;
+  transition: all 2s;-moz-transition: all 2s;-webkit-transition: all 2s;-o-transition: all 2s;
 }
 #lede .leader{
   position: absolute;
@@ -96,6 +118,46 @@ a{
   color: grey;
 }
 
+.content-div{
+  margin: 300px 0;
+}
+.content-div div{
+  margin: 0 auto;
+  display: block;
+  max-width: 600px;
+  padding: 0 10px;
+}
+button#try-it{
+  margin:0 auto 100px;
+  display: block;
+  position: relative;
+  background: white;
+  border: 2px solid #24B1E0;
+  color: #24B1E0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border-radius: 3px;
+  padding: 5px 5px 5px 9px;
+  transition: all 1s;-moz-transition: all 1s;-webkit-transition: all 1s;-o-transition: all 1s;
+}
+button#try-it.active{
+  right: -20%;
+}
+#try-show{
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+  position: relative;
+  top:-180px;
+  margin-bottom: -100px;
+  left: 20%;
+  visibility: hidden;
+  cursor: pointer;
+}
+#try-show.active{
+  visibility: visible;
+}
+
 .form-results{
   max-width: 600px;
   margin:20px auto 100px;
@@ -123,7 +185,7 @@ a{
   display: table;
 }
 .form-results img{
-  border-radius: 25px;
+  border-radius: 5px;
 }
 table td{
   word-break: break-word;
@@ -140,7 +202,7 @@ table td{
 
 .loading {
   position: absolute;
-  top: 60%;
+  top: 150px;
   left: 50%;
 }
 #about .loading {

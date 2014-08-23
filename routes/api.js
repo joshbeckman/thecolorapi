@@ -72,9 +72,20 @@ module.exports = function (app, ensureAuth) {
       } else {
         res.render('400', { color: req.query.hex || req.query.rgb || req.query.hsl || req.query.cmyk });
       }
+    } else if (req.query.format == 'svg'){
+      var color = colored.colorMe.apply(this,[cutils.parseQueryColors(req.query)]);
+      res.type('svg');
+      res.render('colorSVG', { color: color.hex.value,
+                                width: req.query.w || 100,
+                                height: req.query.h || 100,
+                                text: color.name.value,
+                                contrast: color.contrast.value,
+                                named: req.query.named
+                              });
     } else {
       res.jsonp(colored.colorMe.apply(this,[cutils.parseQueryColors(req.query)]));
     }
+    ga.collectPageview(req,null);
   });
 
   app.get('/scheme', function(req,res){
@@ -97,10 +108,22 @@ module.exports = function (app, ensureAuth) {
       res.render('schemeResults', { title: color.name.value + ', ' + mode + ' | The Color API',
                                     scheme: scheme
                                   });
+    } else if (req.query.format == 'svg') {
+      var color = colored.colorMe.apply(this,[cutils.parseQueryColors(req.query)]);
+      var scheme = schemer.getScheme((req.query.mode || 'monochrome'), (req.query.count || 5), color);
+      res.type('svg');
+      res.render('schemeSVG', { scheme: scheme,
+                                width: req.query.w || 100,
+                                height: req.query.h || 200,
+                                iter: 0,
+                                section: Math.round((req.query.h || 200)/scheme.colors.length),
+                                named: req.query.named
+                              });
     } else {
       color = colored.colorMe.apply(this,[cutils.parseQueryColors(req.query)]);
       res.jsonp(schemer.getScheme(mode, count, color));
     }
+    ga.collectPageview(req,null);
   });
 
   app.get('/random', function(req,res){
