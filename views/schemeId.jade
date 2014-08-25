@@ -6,9 +6,18 @@ block content
       h1.title.text-center
         a(href="/", title="The Color API, Opening doors to better color") TheColorAPI
       .text-center
-        form.leader(action="/form-id", method="POST")
+        form.leader(action="/scheme-id", method="POST")
           input(name="color", type="text", placeholder="#0074AB, rgb(2,45,5), etc.", autofocus, required, value="#{req.query.color || ''}")
-          button ID This Color
+          select(name="mode", title="Mode of scheme generation")
+            option(value="analogic") analogic
+            option(value="monochrome") monochrome
+            option(value="monochrome-light") monochrome-light
+            option(value="monochrome-dark") monochrome-dark 
+            option(value="complement") complement
+            option(value="analogic-complement") analogic-complement
+            option(value="triad") triad
+            option(value="quad") quad
+          button Scheme For This Color
         p.links
           span.maker <a href="/docs" title="Documentation">Read The Docs</a> &mdash; <a href="/about", title="About">About</a> &mdash; <a href="mailto:support@thecolorapi.com?subject=The Color API" title="Email support for the API">Support</a> &mdash; <a href="http://twitter.com/jbckmn" rel="author" title="Follow @jbckmn for updates">Updates</a>
       #loading.loading.back

@@ -63,4 +63,30 @@ module.exports = function (app, ensureAuth) {
       res.render('400', { color: req.body.color });
     }
   });
+
+  app.get('/form-scheme', function(req, res) {
+    res.render('schemeId',  { 
+                            title: config.name,
+                            req: req 
+                          });
+  });
+
+  app.post('/scheme-id', function(req,res){
+    var err = null,
+      color = colored.colorMe.apply(this,[cutils.parseUnknownType(req.body.color)]),
+      topKeys = color ? Object.keys(color) : null,
+      lowKeys = color ? (function(){
+        var obj = {};
+        for (var i = 0; i < topKeys.length; i++) {
+          obj[topKeys[i]] = Object.keys(color[topKeys[i]]);
+        }
+        return obj;
+      })() : null;
+    if (color){
+      res.redirect('/scheme?format=html&hex=' + color.hex.clean + '&mode=' + req.body.mode);
+    } else {
+      res.render('400', { color: req.body.color });
+    }
+  });
+
 };

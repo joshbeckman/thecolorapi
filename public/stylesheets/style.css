@@ -42,7 +42,7 @@ a{
   font-weight: 700;
   font-size: 35px;
 }
-#lede .title a, #lede .title a span{
+#lede .title a, #lede .title a span, h1{
   color: #3b3b3b;
   letter-spacing: 12px;
   transition: color 1s;-moz-transition: color 1s;-webkit-transition: color 1s;-o-transition: color 1s;
