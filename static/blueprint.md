@@ -21,12 +21,15 @@ Return available identifying information on the given color.
     + rgb (optional, string, `0,71,171`) ... Valid rgb color, also `rgb(0,71,171)`
     + hsl (optional, string, `215,100%,34%`) ... Valid hsl color, also `hsl(215,100%,34%)`
     + cmyk (optional, string, `100,58,0,33`) ... Valid cmyk color, also `cmyk(100,58,0,33)`
-    + format = `json` (optional, string, `html`) ... Return results as JSON(P) or HTML page
+    + format = `json` (optional, string, `html`) ... Return results as JSON(P), SVG or HTML page
 
         + Values
             + `json`
             + `html`
             + `svg`
+    + w = `100` (optional, integer, `350`) ... Width of resulting image, only applicable on SVG format
+    + w = `100` (optional, integer, `350`) ... Height of resulting image, only applicable on SVG format
+    + named = `true` (optional, boolean, `false`) ... Whether to print the color names on resulting image, only applicable on SVG format
 
 + Model
 
@@ -160,7 +163,7 @@ Return a generated scheme for the provided seed color and optional mode.
     + rgb (optional, string, `0,71,171`) ... Valid rgb color, also `rgb(0,71,171)`
     + hsl (optional, string, `215,100%,34%`) ... Valid hsl color, also `hsl(215,100%,34%)`
     + cmyk (optional, string, `100,58,0,33`) ... Valid cmyk color, also `cmyk(100,58,0,33)`
-    + format = `json` (optional, string, `html`) ... Return results as JSON(P) or HTML page of results
+    + format = `json` (optional, string, `html`) ... Return results as JSON(P), SVG or HTML page of results
 
         + Values
             + `json`
@@ -178,6 +181,9 @@ Return a generated scheme for the provided seed color and optional mode.
             + `triad`
             + `quad`
     + count = `5` (optional, integer, `6`) ... Number of colors to return
+    + w = `100` (optional, integer, `350`) ... Width of resulting image, only applicable on SVG format
+    + w = `100` (optional, integer, `350`) ... Height of resulting image, only applicable on SVG format
+    + named = `true` (optional, boolean, `false`) ... Whether to print the color names on resulting image, only applicable on SVG format
 
 + Model
 
