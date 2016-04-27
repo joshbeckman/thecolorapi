@@ -3,6 +3,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , fs = require('fs')
+  , cors = require('cors')
   , config = JSON.parse(fs.readFileSync('./static/config.json'))
   , app = express();
 
@@ -10,6 +11,7 @@ var express = require('express')
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+app.use(cors());
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
