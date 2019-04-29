@@ -8,9 +8,9 @@
     "type": "git",
     "url": "git@github.com:jbckmn/thecolorapi.git"
   },
-  "engine": [
-    "node >=5.4.0"
-  ],
+  "engines": {
+    "node": "8.9.x"
+  },
   "scripts": {
     "start": "node app.js"
   },
