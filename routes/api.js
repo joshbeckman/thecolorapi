@@ -44,7 +44,7 @@ module.exports = function (app, ensureAuth) {
 
   app.get('/id', function(req,res){
     var err = null;
-    if (!req.query.rgb && !req.query.hex && !req.query.hsl && !req.query.cmyk) {
+    if (!req.query.rgb && !req.query.hex && !req.query.hsl && !req.query.cmyk && !req.query.hsv) {
       err = config.status['400'];
       err.message = 'The Color API doesn\'t understand what you mean. Please supply a query parameter of `rgb`, `hsl`, `cmyk` or `hex`.'
       err.query = req.query;
