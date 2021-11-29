@@ -1,4 +1,4 @@
-[The Color API](//thecolorapi.com)
+[The Color API](https://www.thecolorapi.com)
 ========
 
 Your fast, modern, swiss army knife for color. 

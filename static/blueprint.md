@@ -1,10 +1,10 @@
 FORMAT: 1A
-HOST: http://thecolorapi.com
+HOST: https://www.thecolorapi.com
 
 # The Color API Docs
-- [About](http://thecolorapi.com/) The Color API
+- [About](https://www.thecolorapi.com/) The Color API
 - Support is only an email away: [support@thecolorapi.com](mailto:support@thecolorapi.com?subject=The Color API)
-- Created by [Josh Beckman](http://www.andjosh.com) to bring a little more color into this world.
+- Created by [Josh Beckman](https://www.joshbeckman.org) to bring a little more color into this world.
 
 ---
 
