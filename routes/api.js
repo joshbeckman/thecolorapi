@@ -116,25 +116,29 @@ module.exports = function (app, ensureAuth) {
 					cutils.parseQueryColors(req.query),
 				]),
 				myCanvas,
-        ctx,
-        width,
-        height;
+				ctx,
+				width,
+				height;
 			res.type("png");
-      //Creating canvas
-      width = req.query.w || 100;
-      height = req.query.h || 100;
-      myCanvas = createCanvas(width, height);
-      ctx = myCanvas.getContext("2d");
-      //Filling with color
-      ctx.fillStyle = color.hex.value;
-      ctx.fillRect(0, 0, width, height);
-      //Adding text
-      ctx.fillStyle = color.contrast.value;
-      ctx.font = "12 'Futura, Century Gothic, Helvetica, sans-serif'";
-      ctx.textAlign = "center";
-      ctx.fillText(req.query.named ? "" : color.name.value, Math.round(width/2), Math.round(height/2));
+			//Creating canvas
+			width = req.query.w || 100;
+			height = req.query.h || 100;
+			myCanvas = createCanvas(width, height);
+			ctx = myCanvas.getContext("2d");
+			//Filling with color
+			ctx.fillStyle = color.hex.value;
+			ctx.fillRect(0, 0, width, height);
+			//Adding text
+			ctx.fillStyle = color.contrast.value;
+			ctx.font = "12 'Futura, Century Gothic, Helvetica, sans-serif'";
+			ctx.textAlign = "center";
+			ctx.fillText(
+				req.query.named ? "" : color.name.value,
+				Math.round(width / 2),
+				Math.round(height / 2)
+			);
 
-      res.send(myCanvas.toBuffer());
+			res.send(myCanvas.toBuffer());
 		} else {
 			res.jsonp(
 				colored.colorMe.apply(this, [cutils.parseQueryColors(req.query)])
@@ -188,6 +192,39 @@ module.exports = function (app, ensureAuth) {
 				section: Math.round((req.query.h || 200) / scheme.colors.length),
 				named: req.query.named,
 			});
+		} else if (req.query.format == "png") {
+			color = colored.colorMe.apply(this, [cutils.parseQueryColors(req.query)]);
+			var scheme = schemer.getScheme(
+				req.query.mode || "monochrome",
+				req.query.count || 5,
+				color
+			);
+
+			res.type("png");
+			//Creating canvas
+			width = req.query.w || 100;
+			height = req.query.h || 100; //of one color
+			myCanvas = createCanvas(width, height * scheme.colors.length);
+			ctx = myCanvas.getContext("2d");
+			//Filling with colors and text
+			ctx.font = "12 'Futura, Century Gothic, Helvetica, sans-serif'";
+			ctx.textAlign = "center";
+			for (var i = 0; i < scheme.colors.length; i++) {
+				//Color
+        var color = scheme.colors[i];
+				ctx.fillStyle = color.hex.value;
+				ctx.fillRect(0, i * height, width, height);
+
+				//Text
+				ctx.fillStyle = color.contrast.value;
+				ctx.fillText(
+					req.query.named ? "" : color.name.value,
+					Math.round(width / 2),
+					Math.round(i * height + height / 2)
+				);
+			}
+
+			res.send(myCanvas.toBuffer());
 		} else {
 			color = colored.colorMe.apply(this, [cutils.parseQueryColors(req.query)]);
 			res.jsonp(schemer.getScheme(mode, count, color));
