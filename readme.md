@@ -7,4 +7,7 @@ Pass in any valid color and get conversion into any other format, the name of th
 
 Documentation, examples, and details are on [the website](https://www.thecolorapi.com).
 
-If you find it useful, [sponsor continued maintenance](https://github.com/sponsors/andjosh)!
+If you find it useful, [sponsor continued maintenance](https://github.com/sponsors/joshbeckman)!
+
+
+
